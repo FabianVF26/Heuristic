@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq1ekv2a8dsdn"]
+
+[ext_resource type="Script" uid="uid://dleoufj7askbq" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://caxkrprtjniqh" path="res://assets/Space Background.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://werh8tg4c11" path="res://sun.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://tqx0dc286swk" path="res://mercury.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bcywqjh8jbnmt" path="res://venus.tscn" id="5_lquwl"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1bvp3")
+
+[node name="SpaceBackground" type="Sprite2D" parent="."]
+position = Vector2(592, 311)
+scale = Vector2(0.81101036, 0.79786485)
+texture = ExtResource("1_ig7tw")
+
+[node name="Sun" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(622, 191)
+
+[node name="Mercury" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(524, 188)
+
+[node name="Venus" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(457, 192)

@@ -1,0 +1,100 @@
+[gd_scene load_steps=19 format=3 uid="uid://cq1ekv2a8dsdn"]
+
+[ext_resource type="Script" uid="uid://dleoufj7askbq" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://werh8tg4c11" path="res://sun.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://6ghysiwixjfl" path="res://parallax_2d.gd" id="2_w48qg"]
+[ext_resource type="PackedScene" uid="uid://tqx0dc286swk" path="res://mercury.tscn" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://b8t1k0ftkslh3" path="res://assets/stars.png" id="4_w48qg"]
+[ext_resource type="Script" uid="uid://dra51y5kiurk" path="res://dust_1.gd" id="5_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://bcywqjh8jbnmt" path="res://venus.tscn" id="5_lquwl"]
+[ext_resource type="Texture2D" uid="uid://c0nbsp0py2v7r" path="res://assets/dust1.png" id="5_vivmo"]
+[ext_resource type="PackedScene" uid="uid://03ixhnclx5fr" path="res://earth.tscn" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://pw6xt4abx5hx" path="res://nebulae_1.gd" id="7_074og"]
+[ext_resource type="PackedScene" uid="uid://x5v5tm71ym1n" path="res://mars.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://41s1iqk5pb04" path="res://jupiter.tscn" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://c4sxahk4qiwx" path="res://assets/Nebulae1.png" id="8_cegan"]
+[ext_resource type="PackedScene" uid="uid://v7st5oqwdlf8" path="res://saturn.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://vwhga7qvldj0" path="res://uranus.tscn" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://bgv1mrtofgd0a" path="res://scripts/uranus.gd" id="11_dg77c"]
+[ext_resource type="PackedScene" uid="uid://bsxeoo4ehec45" path="res://neptune.tscn" id="12_dg77c"]
+[ext_resource type="Script" uid="uid://bc4ncg3d07rym" path="res://principalcamera.gd" id="13_ycdy4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1bvp3")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-3, -4)
+script = ExtResource("13_ycdy4")
+
+[node name="Stars" type="Parallax2D" parent="."]
+repeat_times = 7
+script = ExtResource("2_w48qg")
+
+[node name="Stars" type="ParallaxLayer" parent="Stars"]
+motion_scale = Vector2(0.006, 0.006)
+motion_mirroring = Vector2(3015.201, 2977.78)
+
+[node name="SpaceBackground" type="Sprite2D" parent="Stars/Stars"]
+texture_repeat = 2
+position = Vector2(215, 177)
+scale = Vector2(1.2095348, 1.6900909)
+texture = ExtResource("4_w48qg")
+region_enabled = true
+region_rect = Rect2(-19408.547, -13357.829, 51328.637, 26784.488)
+
+[node name="Nebulae1" type="Parallax2D" parent="."]
+script = ExtResource("7_074og")
+zoom_factor = 0.28
+move_factor = 0.28
+
+[node name="Nebulae1" type="ParallaxLayer" parent="Nebulae1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Nebulae1/Nebulae1"]
+position = Vector2(464.99994, 282.99997)
+scale = Vector2(1.5330002, 1.5330002)
+texture = ExtResource("8_cegan")
+
+[node name="Dust1" type="Parallax2D" parent="."]
+script = ExtResource("5_2cqfq")
+zoom_factor = 0.2
+move_factor = 0.2
+
+[node name="Dust1" type="ParallaxLayer" parent="Dust1"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Dust1/Dust1"]
+position = Vector2(-9, 138)
+scale = Vector2(0.92708325, 0.92708325)
+texture = ExtResource("5_vivmo")
+
+[node name="Sun" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(-1, 0)
+
+[node name="Mercury" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(887, 524)
+
+[node name="Venus" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(812, 484)
+
+[node name="Earth" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(727, 437)
+
+[node name="Mars" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(633, 382)
+
+[node name="Jupiter" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(538, 314)
+
+[node name="Saturn" parent="." instance=ExtResource("9_kek77")]
+position = Vector2(415, 231)
+
+[node name="Uranus" parent="." instance=ExtResource("10_efxa6")]
+position = Vector2(261, 164)
+script = ExtResource("11_dg77c")
+
+[node name="Neptune" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(971, 574)
+
+[node name="TrailTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]

@@ -1,0 +1,61 @@
+[gd_scene load_steps=14 format=3 uid="uid://cq1ekv2a8dsdn"]
+
+[ext_resource type="Script" uid="uid://dleoufj7askbq" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://caxkrprtjniqh" path="res://assets/Space Background.png" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://werh8tg4c11" path="res://sun.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://tqx0dc286swk" path="res://mercury.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bcywqjh8jbnmt" path="res://venus.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://03ixhnclx5fr" path="res://earth.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://x5v5tm71ym1n" path="res://mars.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://41s1iqk5pb04" path="res://jupiter.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://v7st5oqwdlf8" path="res://saturn.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://vwhga7qvldj0" path="res://uranus.tscn" id="10_efxa6"]
+[ext_resource type="Script" uid="uid://bgv1mrtofgd0a" path="res://scripts/uranus.gd" id="11_dg77c"]
+[ext_resource type="PackedScene" uid="uid://bsxeoo4ehec45" path="res://neptune.tscn" id="12_dg77c"]
+[ext_resource type="Script" uid="uid://bc4ncg3d07rym" path="res://principalcamera.gd" id="13_ycdy4"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1bvp3")
+
+[node name="SpaceBackground" type="Sprite2D" parent="."]
+position = Vector2(12, 7.000183)
+scale = Vector2(5.29025, 3.4248235)
+texture = ExtResource("1_ig7tw")
+
+[node name="Sun" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(-5, -1)
+
+[node name="Mercury" parent="." instance=ExtResource("3_h2yge")]
+position = Vector2(898, 512)
+
+[node name="Venus" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(812, 484)
+
+[node name="Earth" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(722, 446)
+
+[node name="Mars" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(645, 387)
+
+[node name="Jupiter" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(556, 325)
+
+[node name="Saturn" parent="." instance=ExtResource("9_kek77")]
+position = Vector2(427, 213)
+
+[node name="Uranus" parent="." instance=ExtResource("10_efxa6")]
+position = Vector2(261, 164)
+script = ExtResource("11_dg77c")
+
+[node name="Neptune" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(152, -3)
+
+[node name="TrailTimer" type="Timer" parent="."]
+wait_time = 1.0679999999999998
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-3, -4)
+script = ExtResource("13_ycdy4")
+
+[connection signal="timeout" from="TrailTimer" to="." method="_on_trail_timer_timeout"]
